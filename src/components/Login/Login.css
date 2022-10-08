@@ -43,7 +43,8 @@
 .login__buttom {
     width: 100px;
     align-self: center;
-    margin-top: 10px;
-    background-color: rgb(50, 50, 255);
+    margin-top: 15px;
+    background-color: rgb(50, 50, 225);
+    padding: 7px;
     color: white;
 }

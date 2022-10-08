@@ -32,6 +32,9 @@ export function MainPage() {
   }
 
   async function onClickThread(id) {
+    setThreads(threads.filter( (thread) => {
+      return thread.idThread === id;
+    } ))
     const tempPosts = await retrievePosts(id);  
     // setPosts(tempPosts)
     TestLogin(tempPosts)
@@ -43,7 +46,7 @@ export function MainPage() {
     let usern = localStorage.getItem("username")
     const originalPaswword = await retrieveUserPassword(usern);
 
-    if(passw == originalPaswword){
+    if(String(passw) === String(originalPaswword)){
       setPosts(posts);
     }
     else {
@@ -72,7 +75,7 @@ export function MainPage() {
       {threads.map( (thread) => { 
         return (
           <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.idThread} >
-            <Thread idThread={thread.idThread} title={thread.title} date={thread.date} />
+            <Thread idThread={thread.idThread} title={thread.title} image={thread.image} postsNumber={thread.postsNumber} threads={threads} />
           </div>
         )
       } )}

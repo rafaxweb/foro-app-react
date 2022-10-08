@@ -1,21 +1,61 @@
 .thread {
-    margin: auto;
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    border: solid black 2px;
-    border-radius: 5px;
-    background-color: azure;
 }
 
 .thread-info {
     display: flex;
-    justify-content: space-evenly;
+    border: solid rgb(150, 180, 150);
+    border-radius: 10px;
+    background-color: rgb(225, 255, 225);
+    align-content: flex-start;
+    margin: 10px;
+    height: 155px;
 }
 
-.thread-date {
-    width: 200px;
-    border: solid black 2px;
+.thread-info__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid black;
+    width: 175px;
 }
 
+.thread-info__info__image {
+    align-self: center;
+    height: 100px;
+    padding: 15px;
+}
+
+.thread-info__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding: 10px;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.thread-info__right__title {
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: rgb(25, 100, 25);
+    margin: 0px;
+    padding-top: 15px;
+}
+
+.thread-info__right__number {
+    color: rgb(25, 100, 25);
+    margin-top: 10px;
+    text-align: left;
+}
+
+.thread-info__right__button {
+    width: 150px;
+    align-self: flex-end;
+    background-color: rgb(175, 240, 175);;
+    color: rgb(25, 100, 25);
+    border: transparent;
+    border-radius: 15px;
+    padding: 15px;
+}

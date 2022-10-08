@@ -20,14 +20,14 @@ export default function Login(props) {
     props.SetVisibilidad()
   }
 
-  async function OnClickRegister(e){
+  async function OnClickLogin(e){
 
     e.preventDefault();
     localStorage.clear();
     localStorage.setItem("username", username);
 
     const originalPassword = await retrieveUserPassword("usuario");
-    if(password == originalPassword){
+    if(String(password) === String(originalPassword)){
       localStorage.setItem("password", password);
       window.location.reload(false);
     }
@@ -38,7 +38,7 @@ export default function Login(props) {
   }
 
   return (
-    <form className='login'>
+    <form className='login' onSubmit={OnClickLogin}>
       <button className='login__close' onClick={OnCloseModal}>X</button>
       <div className='login__form-field'>
         <label className='login__form-field__label' htmlFor="username">Usuario</label>
@@ -48,7 +48,7 @@ export default function Login(props) {
         <label className='login__form-field__label' htmlFor="password">Contraseña</label>
         <input className='login__form-field__input' id='password' type='password' value={password} onChange={OnchangePassword}></input>
       </div>
-        <input className='login__buttom' type='submit' onClick={OnClickRegister} value='Iniciar sesión'></input>
+      <input className='login__buttom' type='submit' onClick={OnClickLogin} value='Iniciar sesión'></input>
       {loginCorrecto ? '' : <p className='error-message'>Error en el login: Usuario o contraseña incorrecta</p>}
     </form>
   )

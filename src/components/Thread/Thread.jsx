@@ -12,19 +12,16 @@ export default function Thread(props) {
 
   return (
     <div className='thread'>
-      {createPostVisible ? (
-        <div>
-        <CreateNewPost idThread={props.idThread} />
-      </div>
-      ) : "" }
-      <button onClick={onChangeVisible} >Nuevo post</button>
 
       <div className='thread-info'>
-        <p className='thread-date'>{props.date}</p>
-        <p className='thread-title'>{props.title}</p>
+          <img src={props.image} className='thread-info__info__image' />
+        <div className='thread-info__right'>
+          <p className='thread-info__right__title'>{props.title}</p>
+          <p className='thread-info__right__number'>Publicaciones: {props.postsNumber}</p>
+          {props.threads.length === 1 ? <button className='thread-info__right__button' onClick={onChangeVisible}>Nueva publicación</button> : ""}
+        </div>
       </div>
-      <div>
-      </div>
+      {createPostVisible ? (<div><CreateNewPost idThread={props.idThread} /></div>) : "" }
     </div>
   )
 }
