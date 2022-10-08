@@ -77,6 +77,7 @@ export function MainPage() {
         )
       } )}
       <AllPosts posts={posts}/>
+      <p>Prueba</p>
     </>
   )
 }

@@ -9,6 +9,7 @@ export function CreateNewPost(props) {
 	const [category, setCategory] = useState("doubt")
 	const [visibilidad, setVisibilidad] = useState(true)
 	const [Bannedwords, setBannedWords] = useState(false)
+	const [duplicatedPosts, setDuplicatedPosts] = useState(false)
 	const [mensajeEnviado, setMensajeEnviado] = useState(false)
 	const [body, setBody] = useState("")
 	const [image, setImage] = useState("")
@@ -75,13 +76,15 @@ export function CreateNewPost(props) {
 				setBannedWords(true);
 				setMensajeEnviado(false)
 				containsBanned = true
+				return
 			}
 		})
 
 		let posts = await retrievePosts(props.idThread);
 		
 		for(let i=0; i<posts.length; i++){
-			if((posts[i].description === newPost.description) || (containsBanned)){
+			if((posts[i].description === newPost.description) ){
+				setDuplicatedPosts(true)
 				return
 			}
 		}
@@ -119,8 +122,9 @@ export function CreateNewPost(props) {
 				</select>
 			</div>
 			<>
-			{Bannedwords ? <div> Se han encontrado palabras baneadas </div> : ''}
-			{mensajeEnviado ? <div> Mensaje enviado </div> : ''}
+			{Bannedwords ? <p> Se han encontrado palabras baneadas </p> : ''}
+			{mensajeEnviado ? <p> Mensaje enviado </p> : ''}
+			{duplicatedPosts ? <p> Ya existe un post idéntico en este thread </p> : ''}
 			</>
 			<button>Enviar</button>
 		</form>

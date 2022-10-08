@@ -12,7 +12,6 @@
 .thread-info {
     display: flex;
     justify-content: space-evenly;
-    background-color: aquamarine;
 }
 
 .thread-date {

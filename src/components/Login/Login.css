@@ -1,7 +1,49 @@
 .login {
+    display: flex;
+    flex-direction: column;
     border: solid black 3px;
     background-color: white;
     margin: auto;
+    margin-top: 50px;
     padding: 20px;
     max-width: 400px;
+    min-height: 175px;
+    border-radius: 10px;
+}
+
+.login__close {
+    width: 25px;
+    align-self: flex-end;
+    background-color: transparent;
+    border: 0px;
+    font-weight: 500;
+    font-size: 1.2em;
+    color: red;
+}
+
+.login__close:hover {
+    cursor: pointer;
+}
+
+.login__form-field {
+    width: 275px;
+    margin: auto;
+}
+
+.login__form-field__label {
+    display: block;
+    text-align: left;
+}
+
+.login__form-field__input {
+    width: 100%;
+    text-align: left;
+}
+
+.login__buttom {
+    width: 100px;
+    align-self: center;
+    margin-top: 10px;
+    background-color: rgb(50, 50, 255);
+    color: white;
 }

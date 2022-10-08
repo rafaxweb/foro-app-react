@@ -39,15 +39,17 @@ export default function Login(props) {
 
   return (
     <form className='login'>
-      <button onClick={OnCloseModal}>Cerrar</button>
-      <div>Introduzca usuario</div>
-      <input value={username} onChange={OnchangeUsername}></input>
-      <div>Introduzca contraseña</div>
-      <input value={password} onChange={OnchangePassword}></input>
-      <div>
-        <button onClick={OnClickRegister}>Iniciar sesión</button>
+      <button className='login__close' onClick={OnCloseModal}>X</button>
+      <div className='login__form-field'>
+        <label className='login__form-field__label' htmlFor="username">Usuario</label>
+        <input className='login__form-field__input' id='username' type='text' value={username} onChange={OnchangeUsername}></input>
       </div>
-      {loginCorrecto ? '' : <div>Error en el login: Usuario o contraseña incorrecta</div>}
+      <div className='login__form-field'>
+        <label className='login__form-field__label' htmlFor="password">Contraseña</label>
+        <input className='login__form-field__input' id='password' type='password' value={password} onChange={OnchangePassword}></input>
+      </div>
+        <input className='login__buttom' type='submit' onClick={OnClickRegister} value='Iniciar sesión'></input>
+      {loginCorrecto ? '' : <p className='error-message'>Error en el login: Usuario o contraseña incorrecta</p>}
     </form>
   )
 }
