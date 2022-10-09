@@ -17,6 +17,7 @@
 
 .post__right {
     margin-left: 50px;
+    padding-right: 100px;
 }
 
 .post__right__title {
@@ -25,5 +26,4 @@
 
 .post__right__description {
     color: rgb(25, 100, 25);
-    padding-right: 100px;
 }
