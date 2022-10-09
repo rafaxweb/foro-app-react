@@ -1,0 +1,7 @@
+.posts-list {
+    margin: auto;
+    max-width: 1000px;
+    background-color: rgb(225, 255, 225);
+    border: solid rgb(150, 180, 150);
+    border-radius: 15px;
+}

@@ -63,6 +63,11 @@ export function MainPage() {
     window.location.reload()
   }
 
+  const onMostrarTodo = async() => {
+    const allThreads = await RetrieveThreads()
+    setThreads(allThreads)
+  }
+  
   return (
     <>
       {LoginVision ? 
@@ -72,6 +77,7 @@ export function MainPage() {
       {buttomLoginVision ? <button onClick={SetVisibilidad}>Iniciar sesion</button> : <button onClick={onCerrarSesion}>Cerrar sesión</button>} 
       <h1>Foro</h1>
       <p>CLick en un thread para mostrar los posts</p>
+      <button onClick={onMostrarTodo}>Mostrar todo</button>
       {threads.map( (thread) => { 
         return (
           <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.idThread} >

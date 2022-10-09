@@ -1,12 +1,29 @@
 .post {
+    border-top: solid rgb(150, 180, 150);
     display: flex;
-    margin: auto;
-    width: 800px;
-    justify-content: space-between;
-    border: solid black 1px;
-    padding: 10px;
+}
+
+.post__left {
+    padding: 20px;
 }
 
 .imagen-consulta {
     width: 50px;
+}
+
+.post__left__category {
+    color: rgb(25, 100, 25);
+}
+
+.post__right {
+    margin-left: 50px;
+}
+
+.post__right__title {
+    color: rgb(25, 100, 25);
+}
+
+.post__right__description {
+    color: rgb(25, 100, 25);
+    padding-right: 100px;
 }
