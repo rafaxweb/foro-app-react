@@ -44,20 +44,20 @@ export function CreateNewPost(props) {
 		setMensajeEnviado(false)
 		setDuplicatedPosts(false)
 		
-		let finalImage = "";
+		let finalImage = image;
 		
-		if (image.length === 0) {
+		if (image.length < 5) {
 			switch (category) {
-				case "doubt":
-					finalImage = "../../media/doubt.png"
+				case "Duda":
+					finalImage = "https://img.icons8.com/stickers/344/ask-question.png"
 					break;
 
-				case "suggestion":
-					finalImage = "../../media/suggestion.png"
+				case "Sugerencia":
+					finalImage = "https://img.icons8.com/stickers/344/speaker-notes.png"
 					break;
 
-				case "clarification":
-					finalImage = "../../media/clarification.png"
+				case "Clarificación":
+					finalImage = "https://img.icons8.com/stickers/344/chat.png"
 					break;
 				
 				default:
@@ -102,12 +102,11 @@ export function CreateNewPost(props) {
 		}
 		
 		createNewPostDB(newPost)
-				setMensajeEnviado(true)
-				setBannedWords(false)
-				setTimeout( () => {
-					window.location.reload()
-				}, 1000 ) 
-		
+		setMensajeEnviado(true)
+		setBannedWords(false)
+		setTimeout( () => {
+			window.location.reload()
+		}, 1000 ) 	
 	}
   
 	return (

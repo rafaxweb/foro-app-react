@@ -18,3 +18,30 @@
     cursor: pointer;
     scale: 0.99;
 }
+
+.back-buttom {
+    width: 150px;
+    background-color: rgb(175, 240, 175);
+    color: rgb(25, 100, 25);
+    border: solid rgb(150, 180, 150);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.back-buttom {
+    cursor: pointer;
+}
+
+.login-buttom {
+    margin-top: 20px;
+    width: 150px;
+    background-color: rgb(175, 240, 175);
+    color: rgb(25, 100, 25);
+    border: solid rgb(150, 180, 150);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.login-buttom {
+    cursor: pointer;
+}

@@ -75,10 +75,10 @@ export function MainPage() {
         (<div className='main-page__login'>
           <Login SetVisibilidad={SetVisibilidad}></Login> 
         </div>) : '' }
-      {buttomLoginVision ? <button onClick={SetVisibilidad}>Iniciar sesion</button> : <button onClick={onCerrarSesion}>Cerrar sesión</button>} 
+      {buttomLoginVision ? <button className='login-buttom' onClick={SetVisibilidad}>Iniciar sesion</button> : <button className='login-buttom' onClick={onCerrarSesion}>Cerrar sesión</button>} 
       <h1>Foro</h1>
       <p>Click en un hilo para mostrar las publicaciones</p>
-      {threads.length === 1 ? <button onClick={onMostrarTodo}>Mostrar todo</button> : ""}
+      {threads.length === 1 ? <button className='back-buttom' onClick={onMostrarTodo}>Atrás</button> : ""}
       {threads.map( (thread) => { 
         return (
           <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.idThread} >
