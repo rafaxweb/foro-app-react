@@ -1,0 +1,43 @@
+.form {
+    max-width: 600px;
+    margin: auto;
+    text-align: left;
+    display: flex;
+}
+
+.form__left-column {
+    width: 60%;
+}
+
+.form__right-column {
+    width: 30%;
+}
+
+.form-block {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-block__label {
+    display: block;
+    text-align: left;
+}
+
+.form-block__input {
+    width: 90%;
+}
+
+.form-buttom {
+    width: 150px;
+    background-color: rgb(175, 240, 175);
+    color: rgb(25, 100, 25);
+    border: solid rgb(150, 180, 150);
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.form-buttom {
+    cursor: cell;
+    margin-bottom: 20px;
+}
+

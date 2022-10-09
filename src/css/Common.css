@@ -1,0 +1,21 @@
+.error-message {
+    border: solid rgb(180, 150, 150);
+    border-radius: 10px;
+    background-color: rgb(255, 225, 225);
+    width: max-content;
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.accepted-message {
+    border: solid rgb(150, 180, 150);
+    border-radius: 10px;
+    background-color: rgb(225, 255, 225);
+    width: max-content;
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

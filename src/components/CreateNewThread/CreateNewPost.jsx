@@ -2,17 +2,24 @@ import React, { useState } from 'react'
 import { RetrieveBannedWords } from '../../services/BannedWords/RetrieveBannedWords'
 import { createNewPostDB } from '../../services/Post/createNewPostDB'
 import { retrievePosts } from '../../services/Post/RetrievePost'
-// import './CreateNewPost.css'
+import './CreateNewPost.css'
+import '../../css/Common.css'
 
 export function CreateNewPost(props) {
 
-	const [category, setCategory] = useState("doubt")
 	const [visibilidad, setVisibilidad] = useState(true)
 	const [Bannedwords, setBannedWords] = useState(false)
 	const [duplicatedPosts, setDuplicatedPosts] = useState(false)
 	const [mensajeEnviado, setMensajeEnviado] = useState(false)
+	
+	const [title, setTitle] = useState("")
 	const [body, setBody] = useState("")
+	const [category, setCategory] = useState("doubt")
 	const [image, setImage] = useState("")
+
+	const onChangeTitle = (e) => {
+		setTitle(e.target.value)
+	}
 
 	const onChangeBody = (e) => {
 		setBody(e.target.value);
@@ -20,10 +27,6 @@ export function CreateNewPost(props) {
 
 	const onselectVisibility = (e) => {
 		setVisibilidad(e.target.value);
-	}
-
-	const onselectBannedWords = (e) => {
-		setBannedWords(e.target.value);
 	}
 
 	const onSelectCategory = (e) => {
@@ -36,31 +39,37 @@ export function CreateNewPost(props) {
 
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
+
+		setBannedWords(false);
+		setMensajeEnviado(false)
+		setDuplicatedPosts(false)
 		
-		let Banned = await RetrieveBannedWords();
-
 		let finalImage = "";
-
+		
 		if (image.length === 0) {
 			switch (category) {
 				case "doubt":
-					finalImage = "https://img.icons8.com/office/344/ask-question.png"
+					finalImage = "../../media/doubt.png"
 					break;
+
 				case "suggestion":
-					finalImage = "https://img.icons8.com/color-glass/344/portable-speaker2.png"
+					finalImage = "../../media/suggestion.png"
 					break;
+
 				case "clarification":
-					finalImage = "https://img.icons8.com/color/344/pencil-tip.png"
+					finalImage = "../../media/clarification.png"
 					break;
-			
+				
 				default:
 					finalImage = "prueba"
 					break;
 			}
 		}
-
+						
+		
 		const newPost =     {
 			"idPost": Math.max,
+			"title": title,
 			"description": body,
 			"category": category,
 			"image": finalImage,
@@ -70,9 +79,12 @@ export function CreateNewPost(props) {
 			"public": visibilidad
 		}
 
+		const banned = await RetrieveBannedWords();
 		let containsBanned = false
-		Banned.map( (actualBanned) => {
-			if(body.includes(actualBanned.word)){
+		banned.map( (actualBanned) => {
+			if (title.toLocaleUpperCase().trim().includes(actualBanned.word.toUpperCase()) || 
+			newPost.description.toLocaleUpperCase().trim().includes(actualBanned.word.toUpperCase()) ){
+				
 				setBannedWords(true);
 				setMensajeEnviado(false)
 				containsBanned = true
@@ -83,7 +95,7 @@ export function CreateNewPost(props) {
 		let posts = await retrievePosts(props.idThread);
 		
 		for(let i=0; i<posts.length; i++){
-			if((posts[i].description === newPost.description) ){
+			if((posts[i].title === newPost.title) ){
 				setDuplicatedPosts(true)
 				return
 			}
@@ -92,41 +104,52 @@ export function CreateNewPost(props) {
 		createNewPostDB(newPost)
 				setMensajeEnviado(true)
 				setBannedWords(false)
-				window.location.reload()
+				setTimeout( () => {
+					window.location.reload()
+				}, 1000 ) 
 		
 	}
   
 	return (
-		<form action="" onSubmit={onSubmitForm}>
-			<div>
-				<label className='' htmlFor="">Cuerpo</label>
-				<textarea name="" id="" cols="30" rows="10" value={body} onChange={onChangeBody}></textarea>
-			</div>
-			<div>
-				<label htmlFor="">Categoría</label>
-				<select value={category} onChange={onSelectCategory}>
-					<option value="doubt" >Duda</option>
-					<option value="suggestion">Sugerencia</option>
-					<option value="clarification">Clarification</option>
-				</select>
-			</div>
-			<div>
-				<label htmlFor="">Imagen (url)</label>
-				<input type="text" value={image} onChange={onChangeImageUrl} />
-			</div>
-			<div>
-				<label htmlFor="">Visibilidad</label>
-				<select value={visibilidad} onChange={onselectVisibility}>
-					<option value="true">Publico</option>
-					<option value="false">privado</option>
-				</select>
-			</div>
-			<>
-			{Bannedwords ? <p> Se han encontrado palabras baneadas </p> : ''}
-			{mensajeEnviado ? <p> Mensaje enviado </p> : ''}
-			{duplicatedPosts ? <p> Ya existe un post idéntico en este thread </p> : ''}
-			</>
-			<button>Enviar</button>
-		</form>
+		<>
+			<h2>Nueva publicación</h2>
+			<form className='form' onSubmit={onSubmitForm}>
+				<div className='form__left-column'>
+					<div className='form-block'>
+						<label className='form-block__label' htmlFor='title'>Título</label>
+						<input className='form-block__input' id='title' type='text' value={title} onChange={onChangeTitle}/>
+					</div>
+					<div className='form-block'>
+						<label className='form-block__label' htmlFor="">Cuerpo</label>
+						<textarea className='form-block__input' name="" id="" cols="30" rows="10" value={body} onChange={onChangeBody}></textarea>
+					</div>
+				</div>
+				<div className='form__right-column'>
+					<div className='form-block'>
+						<label className='form-block__label' htmlFor="">Categoría</label>
+						<select className='form-block__input' value={category} onChange={onSelectCategory}>
+							<option value="Duda" >Duda</option>
+							<option value="Sugerencia">Sugerencia</option>
+							<option value="Clarificación">Clarification</option>
+						</select>
+					</div>
+					<div className='form-block'>
+						<label className='form-block__label' htmlFor="">Imagen (url)</label>
+						<input className='form-block__input' type="text" value={image} onChange={onChangeImageUrl} />
+					</div>
+					<div className='form-block'>
+						<label className='form-block__label' htmlFor="">Visibilidad</label>
+						<select className='form-block__input' value={visibilidad} onChange={onselectVisibility}>
+							<option value="true">Publico</option>
+							<option value="false">Privado</option>
+						</select>
+					</div>
+				</div>
+			</form>
+			{mensajeEnviado ? <p className='accepted-message'> Mensaje enviado </p> : ''}
+			{Bannedwords ? <p className='error-message'> Se han encontrado palabras baneadas </p> : ''}
+			{duplicatedPosts ? <p className='error-message'> Ya existe un post idéntico en este thread </p> : ''}
+			<button className='form-buttom' onClick={onSubmitForm}>Enviar</button>
+		</>
 	)
 }

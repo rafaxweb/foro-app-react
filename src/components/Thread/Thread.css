@@ -1,14 +1,17 @@
-.thread {
+.thread__thread {
+    display: flex;
+    flex-direction: column;
+    border: solid rgb(150, 180, 150);
+    border-radius: 10px;
+    background-color: rgb(225, 255, 225);
+    margin: 10px;
+    min-height: 155px;
+    width: 100%;
 }
 
 .thread-info {
     display: flex;
-    border: solid rgb(150, 180, 150);
-    border-radius: 10px;
-    background-color: rgb(225, 255, 225);
     align-content: flex-start;
-    margin: 10px;
-    height: 155px;
 }
 
 .thread-info__info__image {

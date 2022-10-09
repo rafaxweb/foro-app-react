@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { retrieveUserPassword } from '../../services/User/retrieveUserPassword';
 import './Login.css'
+import '../../css/Common.css'
 
 export default function Login(props) {
 
