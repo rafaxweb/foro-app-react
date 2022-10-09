@@ -66,6 +66,7 @@ export function MainPage() {
   const onMostrarTodo = async() => {
     const allThreads = await RetrieveThreads()
     setThreads(allThreads)
+    setPosts([])
   }
   
   return (
@@ -76,8 +77,8 @@ export function MainPage() {
         </div>) : '' }
       {buttomLoginVision ? <button onClick={SetVisibilidad}>Iniciar sesion</button> : <button onClick={onCerrarSesion}>Cerrar sesión</button>} 
       <h1>Foro</h1>
-      <p>CLick en un thread para mostrar los posts</p>
-      <button onClick={onMostrarTodo}>Mostrar todo</button>
+      <p>Click en un hilo para mostrar las publicaciones</p>
+      {threads.length === 1 ? <button onClick={onMostrarTodo}>Mostrar todo</button> : ""}
       {threads.map( (thread) => { 
         return (
           <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.idThread} >
@@ -85,8 +86,7 @@ export function MainPage() {
           </div>
         )
       } )}
-      <AllPosts posts={posts}/>
-      <p>Prueba</p>
+      {threads.length === 1 ? <AllPosts posts={posts}/> : ""}
     </>
   )
 }
